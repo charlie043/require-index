@@ -1,6 +1,6 @@
 {
   "name": "require-index",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Generate index.js exporting all files in a directory",
   "main": "bin/require-index",
   "preferGlobal": true,

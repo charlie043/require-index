@@ -43,7 +43,9 @@ append('module.exports = {\n');
 
 dir.forEach(function(file) {
   if (checkExtension(file) && file !== OUTPUT) {
-    var requirePath = ROOT + file;
+    var _file = file.split('.');
+    var ext = _file.pop();
+    var requirePath = ROOT + ((ext === 'js') ? _file :  file);
     var componentName = path.basename(file, '.' + EXTENSION);
     addComponent(componentName, requirePath);
   }
@@ -51,18 +53,11 @@ dir.forEach(function(file) {
 
 append('};');
 
-/**
- * @param {string} filePath
- * @return {bool}
- */
 function checkExtension(filePath) {
   var extension = filePath.split('.').pop();
   return (extension === EXTENSION);
 }
 
-/**
- * @param {object|array} data
- */
 function addComponent(componentName, requirePath) {
   console.log(('add ' + componentName).green);
   var line = '  ' + componentName + ': ' + 'require("'+requirePath+'"),\n';
