@@ -1,0 +1,29 @@
+{
+  "name": "require-index",
+  "version": "0.0.1",
+  "description": "Generate index.js exporting all files in a directory",
+  "main": "bin/require-index",
+  "preferGlobal": true,
+  "bin": {
+    "react-doxygen": "./bin/require-index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/happy-charlie-777/require-index.git"
+  },
+  "keywords": [
+    "require",
+    "index"
+  ],
+  "author": "charlie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/happy-charlie-777/require-index/issues"
+  },
+  "homepage": "https://github.com/happy-charlie-777/require-index",
+  "dependencies": {
+    "colors": "^1.0.3",
+    "commander": "^2.7.1",
+    "mkdirp": "^0.5.1"
+  }
+}

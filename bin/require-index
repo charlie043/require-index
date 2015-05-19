@@ -1,0 +1,74 @@
+#!/usr/bin/env node
+
+var version = require('../package.json').version;
+
+var fs      = require('fs');
+var path    = require('path');
+var program = require('commander');
+var colors  = require('colors')
+var mkdirp  = require('mkdirp');
+
+/**
+ * options
+ */
+program
+  .version(version)
+  .option('-e, --extension [value]', 'input file extension like js, jsx ( Default "js"')
+  .option('-f, --force', 'force')
+  .parse(process.argv);
+
+/**
+ * args
+ */
+var EXTENSION  = program.extension || 'js';
+var ROOT = './';
+var OUTPUT = 'index.js';
+
+var components = {};
+
+if (fs.existsSync(OUTPUT)) {
+
+  if (!program.force) {
+    console.log((OUTPUT + ' is already exist.').red);
+    return;
+  }
+
+  console.log(('remove ' + OUTPUT).red);
+  fs.unlinkSync(OUTPUT);
+}
+
+var dir = fs.readdirSync(ROOT);
+
+append('module.exports = {\n');
+
+dir.forEach(function(file) {
+  if (checkExtension(file) && file !== OUTPUT) {
+    var requirePath = ROOT + file;
+    var componentName = path.basename(file, '.' + EXTENSION);
+    addComponent(componentName, requirePath);
+  }
+});
+
+append('};');
+
+/**
+ * @param {string} filePath
+ * @return {bool}
+ */
+function checkExtension(filePath) {
+  var extension = filePath.split('.').pop();
+  return (extension === EXTENSION);
+}
+
+/**
+ * @param {object|array} data
+ */
+function addComponent(componentName, requirePath) {
+  console.log(('add ' + componentName).green);
+  var line = '  ' + componentName + ': ' + 'require("'+requirePath+'"),\n';
+  append(line);
+}
+
+function append(data) {
+  fs.appendFileSync(OUTPUT, data, {encoding: 'utf-8'});
+}
