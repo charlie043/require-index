@@ -1,11 +1,11 @@
 {
   "name": "require-index",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generate index.js exporting all files in a directory",
   "main": "bin/require-index",
   "preferGlobal": true,
   "bin": {
-    "react-doxygen": "./bin/require-index"
+    "require-index": "./bin/require-index"
   },
   "repository": {
     "type": "git",
