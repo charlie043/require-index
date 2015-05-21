@@ -1,6 +1,6 @@
 {
   "name": "require-index",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Generate index.js exporting all files in a directory",
   "main": "bin/require-index",
   "preferGlobal": true,
@@ -23,7 +23,6 @@
   "homepage": "https://github.com/happy-charlie-777/require-index",
   "dependencies": {
     "colors": "^1.0.3",
-    "commander": "^2.7.1",
-    "mkdirp": "^0.5.1"
+    "commander": "^2.7.1"
   }
 }

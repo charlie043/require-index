@@ -6,7 +6,6 @@ var fs      = require('fs');
 var path    = require('path');
 var program = require('commander');
 var colors  = require('colors')
-var mkdirp  = require('mkdirp');
 
 /**
  * options
@@ -39,6 +38,11 @@ if (fs.existsSync(OUTPUT)) {
 
 var dir = fs.readdirSync(ROOT);
 
+append('/**\n');
+append(' * this file is created with `require-index`\n');
+append(' * @see https://www.npmjs.com/package/require-index\n');
+append(' * @author charlie :)\n');
+append(' */\n\n');
 append('module.exports = {\n');
 
 dir.forEach(function(file) {
